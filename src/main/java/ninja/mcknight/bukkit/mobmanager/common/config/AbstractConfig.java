@@ -104,6 +104,7 @@ public abstract class AbstractConfig
 		return getConfig(folder, config, null);
 	}
 	
+	@SuppressWarnings("static-access")
 	public static FileConfiguration getConfig(String folder, String config, String defaultConfig)
 	{
 		YamlConfiguration yaml = new YamlConfiguration();
@@ -130,7 +131,7 @@ public abstract class AbstractConfig
 		{
 			try
 			{
-				yaml.load(P.p().getResource(defaultConfig));
+				yaml.loadConfiguration(P.p().getResourceAsReader(defaultConfig));
 				P.p().getLogger().info("Copied Default Configuration - " + configFile.getPath());
 			}
 			catch (Exception e) {}

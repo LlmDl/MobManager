@@ -20,7 +20,7 @@ public class PlayerTrackerListener implements Listener {
     private Map<String, Player> safeMap;
 
     public PlayerTrackerListener() {
-        players = new ConcurrentHashMap<>();
+        players = new ConcurrentHashMap<String, Player>();
         safeMap = Collections.unmodifiableMap(players);
 
         for (Player p : P.p().getServer().getOnlinePlayers()) {

@@ -30,6 +30,8 @@ package ninja.mcknight.bukkit.mobmanager;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -42,11 +44,14 @@ import ninja.mcknight.bukkit.mobmanager.common.util.ExtendedEntityType;
 import ninja.mcknight.bukkit.mobmanager.common.util.FileUtil;
 import ninja.mcknight.bukkit.mobmanager.common.util.Updater;
 import ninja.mcknight.bukkit.mobmanager.metrics.Metrics;
+
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import ninja.mcknight.bukkit.mobmanager.MMComponent.Component;
 import ninja.mcknight.bukkit.mobmanager.common.listeners.CommonMobListener;
+
+import com.google.common.base.Charsets;
 
 /**
  * <b>MobManager</b> Components:
@@ -325,5 +330,10 @@ public class P extends JavaPlugin
 	public boolean shouldAbilitiesIgnoreNextSpawn()
 	{
 		return abilitiesIgnoreNextSpawn;
+	}
+	
+	public InputStreamReader getResourceAsReader(String fileName) {
+		InputStream in = getResource(fileName);
+		return in == null ? null : new InputStreamReader(in, Charsets.UTF_8);
 	}
 }
